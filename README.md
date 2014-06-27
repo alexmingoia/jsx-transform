@@ -1,5 +1,9 @@
 # virtual-dom-jsx
 
+[![Build Status](https://secure.travis-ci.org/alexmingoia/virtual-dom-jsx.png)](http://travis-ci.org/alexmingoia/virtual-dom-jsx) 
+[![NPM version](https://badge.fury.io/js/virtual-dom-jsx.png)](http://badge.fury.io/js/virtual-dom-jsx)
+[![Dependency Status](https://david-dm.org/alexmingoia/virtual-dom-jsx.png)](http://david-dm.org/alexmingoia/virtual-dom-jsx)
+
 JSX transpiler for vtrees. Desugar JSX into [virtual-dom][0] nodes.
 
 ## Installation
