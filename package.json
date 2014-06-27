@@ -1,6 +1,6 @@
 {
   "name": "virtual-dom-jsx",
-  "version": "0.1.0",
+  "version": "0.2.0",
   "description": "JSX transpiler for vtrees. Desugar JSX into virtual dom nodes.",
   "main": "index.js",
   "scripts": {
