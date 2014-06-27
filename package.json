@@ -1,0 +1,29 @@
+{
+  "name": "virtual-dom-jsx",
+  "version": "0.1.0",
+  "description": "JSX transpiler for vtrees. Desugar JSX into virtual dom nodes.",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git://github.com/alexmingoia/vtree-parser.git"
+  },
+  "keywords": [
+    "vtree",
+    "virtual-dom",
+    "jsx",
+    "html",
+    "virtual-hyperscript"
+  ],
+  "author": "Alex Mingoia <talk@alexmingoia.com>",
+  "license": "BSD",
+  "bugs": {
+    "url": "https://github.com/alexmingoia/vtree-parser/issues"
+  },
+  "homepage": "https://github.com/alexmingoia/vtree-parser",
+  "dependencies": {
+    "jstransform": "^5.0.0"
+  }
+}
