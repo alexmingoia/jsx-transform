@@ -4,7 +4,7 @@
   "description": "JSX transpiler for vtrees. Desugar JSX into virtual dom nodes.",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "./node_modules/mocha/bin/mocha test/jsx.js --reporter spec"
   },
   "repository": {
     "type": "git",
@@ -25,5 +25,9 @@
   "homepage": "https://github.com/alexmingoia/vtree-parser",
   "dependencies": {
     "jstransform": "^5.0.0"
+  },
+  "devDependencies": {
+    "expect.js": "^0.3.1",
+    "mocha": "^1.20.1"
   }
 }
