@@ -40,12 +40,12 @@ Parse file containing JSX and return virtual DOM nodes.
 
 ### Options
 
-* `constructor`: string for function calls (default: "virtualdom.h")
+* `jsx`: name of virtual DOM node constructor function (default: false)
 
 ### docblock
 
-Set `options.constructor` to `false` and only files with the
-`/* @jsx virtualdom.h */` docblock will be parsed, and the constructor name used
-will be taken from the `@jsx` definition.
+Only files with the `/* @jsx virtualdom.h */` docblock will be parsed unless
+`options.jsx` is set. The constructor name for the virtual DOM node will be
+taken from the `@jsx` definition if present.
 
 ## BSD Licensed
