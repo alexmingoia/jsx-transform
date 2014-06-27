@@ -1,6 +1,6 @@
 # virtual-dom-jsx
 
-JSX transpiler for vtrees. Desugar JSX into virtual dom nodes.
+JSX transpiler for vtrees. Desugar JSX into [virtual-dom][0] nodes.
 
 ## Installation
 
@@ -13,39 +13,51 @@ npm install virtual-dom-jsx
 This JSX:
 
 ```jsx
-var profile = <profile>
-  <avatar uid="{user.id}" />
-  <span>{[user.firstName, user.lastName].join(' ')}</span>
-</profile>;
+/** @jsx h */
+
+var h = require('virtual-hyperscript');
+
+var profile = <div>
+  <img src="avatar.png" class="profile" />
+  <h3>{[user.firstName, user.lastName].join(' ')}</h3>
+</div>;
 ```
 
 is transformed into this JavaScript:
 
 ```javascript
-var profile = virtualdom.h("profile", null, [
-  virtualdom.h("avatar", { uid: user.id }),
-  virtualdom.h("span", null, [[user.firstName, user.lastName].join(' ')])
+var h = require('virtual-hyperscript');
+
+var profile = h('div', null, [
+  h('img', { src: "avatar.png", class: "profile" }),
+  h('h3', null, [[user.firstName, user.lastName].join(' ')])
 ]);
 ```
 
 ## Usage
 
+### docblock
+
+Only files with the `/** @jsx DOM */` docblock will be parsed unless
+`options.ignoreDocblock` is set. The constructor name for the virtual DOM node
+is taken from the `@jsx` definition.
+
 ### jsx.parse(str, options)
 
-Parse JSX and return virtual DOM nodes.
+Desugar JSX into virtual dom nodes and return transformed string.
 
 ### jsx.parseFile(path, options)
 
-Parse file containing JSX and return virtual DOM nodes.
+Desugar JSX in file into virtual dom nodes and return transformed string.
 
 ### Options
 
-* `jsx`: name of virtual DOM node constructor function (default: false)
-
-### docblock
-
-Only files with the `/* @jsx virtualdom.h */` docblock will be parsed unless
-`options.jsx` is set. The constructor name for the virtual DOM node will be
-taken from the `@jsx` definition if present.
+* `ignoreDocblock` Parse files without docblock. If true, `options.jsx` must
+   also be set (default: false).
+* `tagMethods` Use tag as method instead of argument (default: false).
+   If true, `DOM.h1()` instead of `DOM('h1')`.
+* `jsx` name of virtual DOM node constructor (default: false).
 
 ## BSD Licensed
+
+[0]: https://github.com/Matt-Esch/virtual-dom/
