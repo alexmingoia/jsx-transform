@@ -111,3 +111,5 @@ Desugar JSX in file and return transformed string.
 * `tags` array of known tags (default: exports.tags)
 
 ## BSD Licensed
+
+[0]: https://github.com/facebook/react/
