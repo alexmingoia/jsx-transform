@@ -1,28 +1,30 @@
 {
-  "name": "virtual-dom-jsx",
+  "name": "jsx-transform",
   "version": "0.3.0",
-  "description": "JSX transpiler for vtrees. Desugar JSX into virtual dom nodes.",
+  "description": "JSX transpiler. Desugar JSX into JavaScript. A standard and configurable implementation of JSX decoupled from React.",
   "main": "index.js",
   "scripts": {
     "test": "./node_modules/mocha/bin/mocha test/jsx.js --reporter spec"
   },
   "repository": {
     "type": "git",
-    "url": "git://github.com/alexmingoia/vtree-parser.git"
+    "url": "git://github.com/alexmingoia/jsx-transform.git"
   },
   "keywords": [
+    "jsx",
+    "virtual-hyperscript",
     "vtree",
     "virtual-dom",
-    "jsx",
     "html",
-    "virtual-hyperscript"
+    "mercury",
+    "hyperscript"
   ],
   "author": "Alex Mingoia <talk@alexmingoia.com>",
   "license": "BSD",
   "bugs": {
-    "url": "https://github.com/alexmingoia/vtree-parser/issues"
+    "url": "https://github.com/alexmingoia/jsx-transform/issues"
   },
-  "homepage": "https://github.com/alexmingoia/vtree-parser",
+  "homepage": "https://github.com/alexmingoia/jsx-transform",
   "dependencies": {
     "jstransform": "^5.0.0"
   },

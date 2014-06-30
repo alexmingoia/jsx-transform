@@ -1,15 +1,18 @@
-# virtual-dom-jsx
+# jsx-transform
 
-[![Build Status](https://secure.travis-ci.org/alexmingoia/virtual-dom-jsx.png)](http://travis-ci.org/alexmingoia/virtual-dom-jsx) 
-[![NPM version](https://badge.fury.io/js/virtual-dom-jsx.png)](http://badge.fury.io/js/virtual-dom-jsx)
-[![Dependency Status](https://david-dm.org/alexmingoia/virtual-dom-jsx.png)](http://david-dm.org/alexmingoia/virtual-dom-jsx)
+[![Build Status](https://secure.travis-ci.org/alexmingoia/jsx-transform.png)](http://travis-ci.org/alexmingoia/jsx-transform) 
+[![NPM version](https://badge.fury.io/js/jsx-transform.png)](http://badge.fury.io/js/jsx-transform)
+[![Dependency Status](https://david-dm.org/alexmingoia/jsx-transform.png)](http://david-dm.org/alexmingoia/jsx-transform)
 
-JSX transpiler for vtrees. Desugar JSX into [virtual-dom][0] nodes.
+JSX transpiler. Desugar JSX into JavaScript.
+
+This module aims to be a standard and configurable implementation of JSX
+decoupled from [React][0].
 
 ## Installation
 
 ```sh
-npm install virtual-dom-jsx
+npm install jsx-transform
 ```
 
 ## Example
@@ -38,21 +41,65 @@ var profile = h('div', null, [
 ]);
 ```
 
-## Usage
+## JSX
+
+JSX is a JavaScript XML syntax.
+
+### The Transform
+
+Known tag names are passed as arguments to the ident specified by the `@jsx`
+docblock:
+
+`<div class="blue"></div>` => `virtualdom.h('div', { class: 'blue' })`
+
+Unknown tags are assumed to be function names in scope:
+
+`<FrontPage class="blue"></FrontPage>` => `FrontPage({ class: 'blue' })`
 
 ### docblock
 
 Only files with the `/** @jsx DOM */` docblock will be parsed unless
-`options.ignoreDocblock` is set. The constructor name for the virtual DOM node
-is taken from the `@jsx` definition.
+`options.ignoreDocblock` is set. The constructor name is taken from the `@jsx`
+definition.
 
-### jsx.parse(str, options)
+### Expressions
 
-Desugar JSX into virtual dom nodes and return transformed string.
+Use JavaScript expressions as attribute values by wrapping the expression in a
+pair of curly braces ({}) instead of quotes (""):
 
-### jsx.parseFile(path, options)
+```jsx
+<Profile class={state.isLoggedIn ? 'loggedIn' : 'loggedOut'}></Profile>
+```
 
-Desugar JSX in file into virtual dom nodes and return transformed string.
+```javascript
+Profile({ class: state.isLoggedIn ? 'loggedIn' : 'loggedOut' });
+```
+
+Expressions can also express children:
+
+```jsx
+<Profile>{ state.isLoggedIn ? <Settings /> : <CreateAccount /> }</Profile>
+```
+
+```javascript
+Profile(null, [state.isLoggedIn ? Settings(null) : CreateAccount(null)]);
+```
+
+### React and JSX
+
+React's transform has a slightly different API, treating tag names as method
+names instead of arguments. Equivelant behavior can be achieved in
+`jsx-transform` by setting `options.tagMethods` to `true`.
+
+## API
+
+### jsx.transform(str, options)
+
+Desugar JSX and return transformed string.
+
+### jsx.transformFile(path, options)
+
+Desugar JSX in file and return transformed string.
 
 ### Options
 
@@ -60,8 +107,7 @@ Desugar JSX in file into virtual dom nodes and return transformed string.
    also be set (default: false).
 * `tagMethods` Use tag as method instead of argument (default: false).
    If true, `DOM.h1()` instead of `DOM('h1')`.
-* `jsx` name of virtual DOM node constructor (default: false).
+* `jsx` name of virtual DOM node constructor (default: set by docblock).
+* `tags` array of known tags (default: exports.tags)
 
 ## BSD Licensed
-
-[0]: https://github.com/Matt-Esch/virtual-dom/
