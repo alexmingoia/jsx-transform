@@ -9,6 +9,8 @@ JSX transpiler. Desugar JSX into JavaScript.
 This module aims to be a standard and configurable implementation of JSX
 decoupled from [React][0].
 
+For linting files containing JSX see [JSXHint][1].
+
 ## Installation
 
 ```sh
@@ -113,3 +115,4 @@ Desugar JSX in file and return transformed string.
 ## BSD Licensed
 
 [0]: https://github.com/facebook/react/
+[1]: https://github.com/STRML/JSXHint/
