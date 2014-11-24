@@ -1,8 +1,4 @@
-# jsx-transform
-
-[![Build Status](https://secure.travis-ci.org/alexmingoia/jsx-transform.png)](http://travis-ci.org/alexmingoia/jsx-transform) 
-[![NPM version](https://badge.fury.io/js/jsx-transform.png)](http://badge.fury.io/js/jsx-transform)
-[![Dependency Status](https://david-dm.org/alexmingoia/jsx-transform.png)](http://david-dm.org/alexmingoia/jsx-transform)
+# jsx-transform [![Build Status](http://img.shields.io/travis/alexmingoia/jsx-transform.svg?style=flat)](http://travis-ci.org/alexmingoia/jsx-transform) [![NPM version](http://img.shields.io/npm/v/jsx-transform.svg?style=flat)](https://npmjs.org/package/jsx-transform) [![Dependency Status](http://img.shields.io/david/alexmingoia/jsx-transform.svg?style=flat)](http://david-dm.org/alexmingoia/jsx-transform)
 
 JSX transpiler. Desugar JSX into JavaScript.
 
@@ -64,6 +60,17 @@ Only files with the `/** @jsx DOM */` docblock will be parsed unless
 `options.ignoreDocblock` is set. The constructor name is taken from the `@jsx`
 definition.
 
+```javascript
+/** @jsx React.createElement */
+<div>Hello World</div>
+```
+
+is desugared to
+
+```javascript
+React.createElement("div", null, ["Hello World"]);
+```
+
 ### Expressions
 
 Use JavaScript expressions as attribute values by wrapping the expression in a
@@ -86,12 +93,6 @@ Expressions can also express children:
 ```javascript
 Profile(null, [state.isLoggedIn ? Settings(null) : CreateAccount(null)]);
 ```
-
-### React and JSX
-
-React's transform has a slightly different API, treating tag names as method
-names instead of arguments. Equivelant behavior can be achieved in
-`jsx-transform` by setting `options.tagMethods` to `true`.
 
 ## API
 
