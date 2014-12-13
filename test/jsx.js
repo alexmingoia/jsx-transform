@@ -65,8 +65,8 @@ describe('jsx.transform()', function() {
         tags: []
       });
       expect(result).to.be.a('string');
-      expect(result).to.contain("DOM('h1'");
-      expect(result).to.contain("DOM('div'");
+      expect(result).to.not.contain("DOM('h1'");
+      expect(result).to.not.contain("DOM('div'");
     });
   });
 });
