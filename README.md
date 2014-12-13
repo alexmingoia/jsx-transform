@@ -111,7 +111,8 @@ Desugar JSX in file and return transformed string.
 * `tagMethods` Use tag as method instead of argument (default: false).
    If true, `DOM.h1()` instead of `DOM('h1')`.
 * `jsx` name of virtual DOM node constructor (default: set by docblock).
-* `tags` array of known tags (default: exports.tags)
+* `tags` array of known tags (default: exports.tags). It can be cleared by
+   setting it to an empty array (`[]`).
 
 ## BSD Licensed
 
