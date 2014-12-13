@@ -40,4 +40,33 @@ describe('jsx.transform()', function() {
       expect(result).to.contain("DOM.h1(");
     });
   });
+
+  describe('options.tags', function () {
+    it('uses tags argument instead of default tag list', function () {
+      var result = jsx.transform(mock, {
+        tags: ['div']
+      });
+      expect(result).to.be.a('string');
+      expect(result).to.not.contain("DOM('h1'");
+      expect(result).to.contain("DOM('div'");
+    });
+
+    it('defaults to the internal list', function () {
+      var result = jsx.transform(mock, {
+        tags: null
+      });
+      expect(result).to.be.a('string');
+      expect(result).to.contain("DOM('h1'");
+      expect(result).to.contain("DOM('div'");
+    });
+
+    it('knows no tags when passed an empty list', function () {
+      var result = jsx.transform(mock, {
+        tags: []
+      });
+      expect(result).to.be.a('string');
+      expect(result).to.contain("DOM('h1'");
+      expect(result).to.contain("DOM('div'");
+    });
+  });
 });
