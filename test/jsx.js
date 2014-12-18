@@ -69,4 +69,15 @@ describe('jsx.transform()', function() {
       expect(result).to.not.contain("DOM('div'");
     });
   });
+
+  describe('options.renameAttrs', function () {
+    it('renames attributes when desugaring JSX', function () {
+      var result = jsx.transform(mock, {
+        renameAttrs: {'class': 'className'}
+      });
+      expect(result).to.be.a('string');
+      expect(result).to.contain("className:");
+      expect(result).to.not.contain("class:");
+    });
+  });
 });

@@ -113,6 +113,9 @@ Desugar JSX in file and return transformed string.
 * `jsx` name of virtual DOM node constructor (default: set by docblock).
 * `tags` array of known tags (default: exports.tags). It can be cleared by
    setting it to an empty array (`[]`).
+* `renameAttrs` dictionary of attribute names and their replacements. For 
+   example, `{'class': 'className'}` will replace all `class` attributes with 
+   `className`. This is useful for writing more HTML-like JSX.
 
 ## BSD Licensed
 
