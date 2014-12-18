@@ -1,6 +1,7 @@
 {
   "name": "jsx-transform",
-  "version": "0.6.1",
+  "private": true,
+  "version": "0.7.0",
   "description": "JSX transpiler. Desugar JSX into JavaScript. A standard and configurable implementation of JSX decoupled from React.",
   "main": "index.js",
   "scripts": {
