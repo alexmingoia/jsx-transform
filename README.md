@@ -116,6 +116,8 @@ Desugar JSX in file and return transformed string.
 * `renameAttrs` dictionary of attribute names and their replacements. For 
    example, `{'class': 'className'}` will replace all `class` attributes with 
    `className`. This is useful for writing more HTML-like JSX.
+* `docblockUnkownTags` Handle unknown tags like known tags, except passing them
+   as an object. (default: false).
 
 ## BSD Licensed
 
