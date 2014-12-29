@@ -4,7 +4,7 @@
   "description": "JSX transpiler. Desugar JSX into JavaScript. A standard and configurable implementation of JSX decoupled from React.",
   "main": "index.js",
   "scripts": {
-    "test": "./node_modules/mocha/bin/mocha test/jsx.js --reporter spec"
+    "test": "./node_modules/gulp/bin/gulp.js test"
   },
   "repository": {
     "type": "git",
@@ -30,6 +30,11 @@
   },
   "devDependencies": {
     "expect.js": "^0.3.1",
-    "mocha": "^2.0.1"
+    "gulp": "^3.8.10",
+    "gulp-instrument": "^0.1.0",
+    "gulp-jshint": "^1.9.0",
+    "gulp-mocha": "^2.0.0",
+    "jsdoc-to-markdown": "^0.5.9",
+    "jshint-stylish": "^1.0.0"
   }
 }

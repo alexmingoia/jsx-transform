@@ -2,13 +2,7 @@
 
 > JSX transpiler. Desugar JSX into JavaScript.
 
-This module aims to be a standard and configurable implementation of JSX
-decoupled from [React](https://github.com/facebook/react).
-
-For linting files containing JSX see
-[JSXHint](https://github.com/STRML/JSXHint).
-
-## Installation
+{{#module name="jsx-transform"}}{{>body}}{{/module}}## Installation
 
 ```sh
 npm install jsx-transform
@@ -113,52 +107,7 @@ Profile(null, [state.isLoggedIn ? Settings(null) : CreateAccount(null)]);
 ```
 
 ## API
-**Members**
-
-* [jsx-transform](#module_jsx-transform)
-  * [jsx-transform~transform(str, [options])](#module_jsx-transform..transform)
-  * [jsx-transform~transformFile(path, options)](#module_jsx-transform..transformFile)
-
-<a name="module_jsx-transform..transform"></a>
-##jsx-transform~transform(str, [options])
-Desugar JSX and return transformed string.
-
-Known tags are passed as arguments to JSX ident (assume
-`@jsx react.createElement`):
-
-  `<div class="blue"></div>` => `react.createElement('div', { class: 'blue' })`
-
-Unknown tags are assumed to be function names in scope:
-
-  `<FrontPage class="blue"></FrontPage>` => `FrontPage({ class: 'blue' })`
-
-**Params**
-
-- str `String`  
-- \[options\] `Object`  
-  - \[ignoreDocblock\] `Boolean` - Parse files without docblock. If
-true `options.jsx` must also be set.  
-  - \[renameAttrs\] `Object` - rename attributes while desugaring JSX
-(i.e. `class` to `className`).  
-  - \[tags\] `Array` - list of known tags (default: exports.tags)  
-  - \[tagMethods\] `Boolean` - use tag name as method of jsx ident
-instead of argument. If true `DOM.h1()` instead of `DOM("h1")`.  
-  - jsx `String` - constructor name (default: set by docblock).  
-
-**Scope**: inner function of [jsx-transform](#module_jsx-transform)  
-**Returns**: `String`  
-<a name="module_jsx-transform..transformFile"></a>
-##jsx-transform~transformFile(path, options)
-See [module:jsx-transform.transform](module:jsx-transform.transform) for usage.
-
-**Params**
-
-- path `String`  
-- options `Object`  
-
-**Scope**: inner function of [jsx-transform](#module_jsx-transform)  
-**Returns**: `String`  
-
+{{#module name="jsx-transform"}}{{>exported}}{{/module}}
 
 ## BSD Licensed
 

@@ -2,7 +2,7 @@ var expect = require('expect.js');
 var fs = require('fs');
 var jsx = require('..');
 var path = require('path');
-var mockPath = path.join(__dirname, 'mock.js');
+var mockPath = path.join(__dirname, 'fixture.jsx');
 
 describe('jsx.transform()', function() {
   var mock = fs.readFileSync(mockPath, 'utf8');
