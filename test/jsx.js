@@ -2,20 +2,20 @@ var expect = require('expect.js');
 var fs = require('fs');
 var jsx = require('..');
 var path = require('path');
-var mockPath = path.join(__dirname, 'fixture.jsx');
+var fixturePath = path.join(__dirname, 'fixture.jsx');
 
 describe('jsx.transform()', function() {
-  var mock = fs.readFileSync(mockPath, 'utf8');
+  var fixture = fs.readFileSync(fixturePath, 'utf8');
 
   it('desugars JSX', function() {
-    var result = jsx.transform(mock);
+    var result = jsx.transform(fixture);
     expect(result).to.be.a('string');
     expect(result).to.contain("DOM('h1");
   });
 
   describe('options.ignoreDocblock', function() {
     it('ignores files without jsx docblock', function() {
-      var result = jsx.transform(mock.replace('/** @jsx DOM */', ''));
+      var result = jsx.transform(fixture.replace('/** @jsx DOM */', ''));
       expect(result).to.be.a('string');
       expect(result).to.contain('<h1>');
     });
@@ -23,7 +23,7 @@ describe('jsx.transform()', function() {
 
   describe('options.jsx', function() {
     it('overrides docblock constructor', function() {
-      var result = jsx.transform(mock, {
+      var result = jsx.transform(fixture, {
         jsx: "virtualdom.h"
       });
       expect(result).to.be.a('string');
@@ -33,7 +33,7 @@ describe('jsx.transform()', function() {
 
   describe('options.tagMethods', function() {
     it('uses tag method instead of argument', function() {
-      var result = jsx.transform(mock, {
+      var result = jsx.transform(fixture, {
         tagMethods: true
       });
       expect(result).to.be.a('string');
@@ -41,9 +41,19 @@ describe('jsx.transform()', function() {
     });
   });
 
+  describe('options.docblockUnknownTags', function() {
+    it('passes unknown tags to docblock ident', function() {
+      var result = jsx.transform(fixture, {
+        docblockUnknownTags: true
+      });
+      expect(result).to.be.a('string');
+      expect(result).to.contain("DOM(Component");
+    });
+  });
+
   describe('options.tags', function () {
     it('uses tags argument instead of default tag list', function () {
-      var result = jsx.transform(mock, {
+      var result = jsx.transform(fixture, {
         tags: ['div']
       });
       expect(result).to.be.a('string');
@@ -52,7 +62,7 @@ describe('jsx.transform()', function() {
     });
 
     it('defaults to the internal list', function () {
-      var result = jsx.transform(mock, {
+      var result = jsx.transform(fixture, {
         tags: null
       });
       expect(result).to.be.a('string');
@@ -61,7 +71,7 @@ describe('jsx.transform()', function() {
     });
 
     it('knows no tags when passed an empty list', function () {
-      var result = jsx.transform(mock, {
+      var result = jsx.transform(fixture, {
         tags: []
       });
       expect(result).to.be.a('string');
@@ -72,7 +82,7 @@ describe('jsx.transform()', function() {
 
   describe('options.renameAttrs', function () {
     it('renames attributes when desugaring JSX', function () {
-      var result = jsx.transform(mock, {
+      var result = jsx.transform(fixture, {
         renameAttrs: {'class': 'className'}
       });
       expect(result).to.be.a('string');
