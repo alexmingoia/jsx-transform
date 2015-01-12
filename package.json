@@ -1,11 +1,11 @@
 {
   "name": "jsx-transform",
-  "version": "0.10.0",
+  "version": "0.10.1",
   "description": "JSX transpiler. Desugar JSX into JavaScript. A standard and configurable implementation of JSX decoupled from React.",
   "files": [
     "lib"
   ],
-  "main": "index.js",
+  "main": "lib/jsx.js",
   "scripts": {
     "test": "./node_modules/gulp/bin/gulp.js test"
   },
