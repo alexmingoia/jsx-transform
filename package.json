@@ -5,7 +5,7 @@
   "files": [
     "lib"
   ],
-  "main": "index.js",
+  "main": "lib/jsx.js",
   "scripts": {
     "test": "./node_modules/gulp/bin/gulp.js test"
   },
