@@ -145,7 +145,6 @@ docblock ident:
 true `options.jsx` must also be set.  
   - \[renameAttrs\] `Object` - rename attributes while desugaring JSX
 (i.e. `class` to `className`).  
-  - \[tags\] `Array` - list of known tags (default: exports.tags)  
   - \[tagMethods\] `Boolean` - use tag name as method of jsx ident
 instead of argument. If true `DOM.h1()` instead of `DOM("h1")`.  
   - \[docblockUnknownTags\] `Boolean` - Handle unknown tags like
