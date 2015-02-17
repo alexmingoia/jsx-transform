@@ -13,6 +13,8 @@ var jsdoc2md = require('jsdoc-to-markdown');
 var jshint = require('gulp-jshint');
 var mocha = require('gulp-mocha');
 var stylish = require('jshint-stylish');
+var spawn = require('child_process').spawn;
+var source = require('vinyl-source-stream');
 
 gulp.task('instrument', function() {
   return gulp.src('lib/**.js')
@@ -23,7 +25,7 @@ gulp.task('instrument', function() {
 gulp.task('coverage', ['instrument'], function() {
   process.env.JSCOV=1;
 
-  return spawn('node_modules/gulp-mocha-phantomjs/node_modules/mocha-phantomjs/node_modules/mocha/bin/mocha', [
+  return spawn('node_modules/gulp-mocha/node_modules/mocha/bin/mocha', [
     'test', '--reporter', 'html-cov'
   ]).stdout
     .pipe(source('coverage.html'))
