@@ -1,16 +1,31 @@
 var expect = require('expect.js');
 var fs = require('fs');
-var jsx = require('..');
+var jsx = process.env.JSCOV ? require('../lib-cov/jsx') : require('../lib/jsx');
 var path = require('path');
-var fixturePath = path.join(__dirname, 'fixture.jsx');
 
 describe('jsx.transform()', function() {
-  var fixture = fs.readFileSync(fixturePath, 'utf8');
+  var fixture = fs.readFileSync(path.join(__dirname, 'fixture.jsx'), 'utf8');
+  var selfClosingFixture = fs.readFileSync(
+    path.join(__dirname, 'fixture_selfclosing.jsx'),
+    'utf8'
+  );
 
   it('desugars JSX', function() {
     var result = jsx.transform(fixture);
     expect(result).to.be.a('string');
     expect(result).to.contain("DOM('h1");
+  });
+
+  it('transforms self-closing tags', function () {
+    var result = jsx.transform(selfClosingFixture);
+    expect(result).to.be.a('string');
+    expect(result).to.contain("DOM('link");
+  });
+
+  it('renders JS expressions inside JSX tag', function () {
+    var result = jsx.transform(fixture);
+    expect(result).to.be.a('string');
+    expect(result).to.contain("x = 2");
   });
 
   describe('options.ignoreDocblock', function() {

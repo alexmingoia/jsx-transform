@@ -1,9 +1,10 @@
 /** @jsx DOM */
 
 module.exports = function() {
-  var profile = <Component></Component>
+  var x = 1;
+  var profile = <Component>{x = 2}</Component>
 
-  if (1 < 2) {
+  if (x < 2) {
     return <h1>One is less than two</h1>;
   } else {
     return <div class="title"><h1>elements can be nested</h1></div>;
