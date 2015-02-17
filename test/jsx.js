@@ -51,35 +51,6 @@ describe('jsx.transform()', function() {
     });
   });
 
-  describe('options.tags', function () {
-    it('uses tags argument instead of default tag list', function () {
-      var result = jsx.transform(fixture, {
-        tags: ['div']
-      });
-      expect(result).to.be.a('string');
-      expect(result).to.not.contain("DOM('h1'");
-      expect(result).to.contain("DOM('div'");
-    });
-
-    it('defaults to the internal list', function () {
-      var result = jsx.transform(fixture, {
-        tags: null
-      });
-      expect(result).to.be.a('string');
-      expect(result).to.contain("DOM('h1'");
-      expect(result).to.contain("DOM('div'");
-    });
-
-    it('knows no tags when passed an empty list', function () {
-      var result = jsx.transform(fixture, {
-        tags: []
-      });
-      expect(result).to.be.a('string');
-      expect(result).to.not.contain("DOM('h1'");
-      expect(result).to.not.contain("DOM('div'");
-    });
-  });
-
   describe('options.renameAttrs', function () {
     it('renames attributes when desugaring JSX', function () {
       var result = jsx.transform(fixture, {
