@@ -31,8 +31,8 @@ Transformed into JS:
 
 ```javascript
 var profile = react.createElement('div', null, [
-  h('img', { src: "avatar.png", class: "profile" }),
-  h('h3', null, [[user.firstName, user.lastName].join(' ')])
+  react.createElement('img', { src: "avatar.png", class: "profile" }),
+  react.createElement('h3', null, [[user.firstName, user.lastName].join(' ')])
 ]);
 ```
 
