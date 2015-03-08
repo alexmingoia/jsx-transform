@@ -2,3 +2,5 @@ haters
 node_modules
 npm-debug.log
 **DS_Store
+coverage.html
+lib-cov
