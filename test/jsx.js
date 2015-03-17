@@ -9,9 +9,19 @@ describe('jsx.transform()', function() {
     path.join(__dirname, 'fixture_selfclosing.jsx'),
     'utf8'
   );
+  var es6Fixture = fs.readFileSync(
+    path.join(__dirname, 'fixture_es6.jsx'),
+    'utf8'
+  );
 
   it('desugars JSX', function() {
     var result = jsx.transform(fixture);
+    expect(result).to.be.a('string');
+    expect(result).to.contain("DOM('h1");
+  });
+
+  it('desugars JSX with ES6 module exports', function () {
+    var result = jsx.transform(es6Fixture);
     expect(result).to.be.a('string');
     expect(result).to.contain("DOM('h1");
   });

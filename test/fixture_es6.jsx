@@ -1,6 +1,8 @@
 /** @jsx DOM */
 
-module.exports = function () {
+export default View;
+
+function View() {
   var x = 1;
   var profile = <Component>{x = 2}</Component>
 
