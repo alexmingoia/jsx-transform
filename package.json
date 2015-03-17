@@ -29,7 +29,7 @@
   },
   "homepage": "https://github.com/alexmingoia/jsx-transform",
   "dependencies": {
-    "jstransform": "^9.1.1"
+    "jstransform": "^10.1.0"
   },
   "devDependencies": {
     "expect.js": "^0.3.1",
