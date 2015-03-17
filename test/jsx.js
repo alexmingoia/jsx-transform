@@ -76,6 +76,17 @@ describe('jsx.transform()', function() {
     });
   });
 
+  describe('options.unknownTagsAsString', function() {
+    it('passes unknown tags to docblock ident as string', function () {
+      var result = jsx.transform(fixture, {
+        docblockUnknownTags: true,
+        unknownTagsAsString: true
+      });
+      expect(result).to.be.a('string');
+      expect(result).to.contain("DOM('Component'");
+    });
+  });
+
   describe('options.renameAttrs', function () {
     it('renames attributes when desugaring JSX', function () {
       var result = jsx.transform(fixture, {
