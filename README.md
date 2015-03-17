@@ -31,8 +31,8 @@ Transformed into JS:
 
 ```javascript
 var profile = react.createElement('div', null, [
-  react.createElement('img', { src: "avatar.png", class: "profile" }),
-  react.createElement('h3', null, [[user.firstName, user.lastName].join(' ')])
+  h('img', { src: "avatar.png", class: "profile" }),
+  h('h3', null, [[user.firstName, user.lastName].join(' ')])
 ]);
 ```
 
@@ -146,9 +146,12 @@ true `options.jsx` must also be set.
   - \[renameAttrs\] `Object` - rename attributes while desugaring JSX
 (i.e. `class` to `className`).  
   - \[tagMethods\] `Boolean` - use tag name as method of jsx ident
-instead of argument. If true `DOM.h1()` instead of `DOM("h1")`.  
+instead of argument. If true `DOM.h1()` instead of `DOM('h1')`.  
   - \[docblockUnknownTags\] `Boolean` - Handle unknown tags like
-known tags, and pass them as an object to docblock ident. (default: false)  
+known tags, and pass them as an object to docblock ident. If true,
+`DOM(Component)` instead of `Component()` (default: false).  
+  - \[unknownTagsAsString\] `Boolean` - Pass unknown tags as string
+instead of object when `options.docblockUnknownTags` is true.  
   - jsx `String` - Constructor name (default: set by docblock).  
 
 **Scope**: inner function of [jsx-transform](#module_jsx-transform)  
