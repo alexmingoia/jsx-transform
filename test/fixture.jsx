@@ -3,6 +3,7 @@
 module.exports = function () {
   var x = 1;
   var profile = <Component>{x = 2}</Component>
+  var h1 = <h1 class="header">Hello {firstName + " " + lastName}</h1>;
 
   if (x < 2) {
     return <h1>One is less than two</h1>;
