@@ -98,4 +98,18 @@ describe('jsx.transform()', function() {
       expect(result).to.not.contain("class:");
     });
   });
+
+  describe('options.passArray', function() {
+    it('dont pass array for children', function() {
+      var arrayArgsJS = fs.readFileSync(
+        path.join(__dirname, 'fixture_arrayArgs.js'),
+        'utf8'
+      );
+      var result = jsx.transform(fixtureJSX, {
+        passArray: false
+      });
+      expect(result).to.be.a('string');
+      expect(result).to.equal(arrayArgsJS);
+    })
+  })
 });
