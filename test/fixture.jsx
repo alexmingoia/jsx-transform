@@ -6,7 +6,7 @@ module.exports = function () {
   var h1 = <h1 class="header">Hello {firstName + " " + lastName}</h1>;
 
   if (x < 1) {
-    return <div></div>
+    return <div></div>;
   } else if (x < 2) {
     return <h1>One is less than two</h1>;
   } else {
