@@ -142,8 +142,6 @@ docblock ident:
 
 - str `String`  
 - \[options\] `Object`  
-  - \[tagMethods\] `Boolean` - use tag name as method of jsx ident
-instead of argument. If true `DOM.h1()` instead of `DOM('h1')`.  
   - \[docblockUnknownTags\] `Boolean` - Handle unknown tags like
 known tags, and pass them as an object to docblock ident. If true,
 `DOM(Component)` instead of `Component()` (default: false).  

@@ -60,16 +60,6 @@ describe('jsx.fromString()', function() {
     });
   });
 
-  describe('options.tagMethods', function() {
-    it('uses tag method instead of argument', function() {
-      var result = jsx.fromString(fixtureJSX, {
-        tagMethods: true
-      });
-      expect(result).to.be.a('string');
-      expect(result).to.contain("DOM.h1(");
-    });
-  });
-
   describe('options.docblockUnknownTags', function() {
     it('passes unknown tags to docblock ident', function() {
       var result = jsx.fromString(fixtureJSX, {
