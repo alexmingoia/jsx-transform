@@ -118,6 +118,7 @@ Profile(null, [state.isLoggedIn ? Settings(null) : CreateAccount(null)]);
 * [jsx-transform](#module_jsx-transform)
   * [jsx-transform~transform(str, [options])](#module_jsx-transform..transform)
   * [jsx-transform~transformFile(path, options)](#module_jsx-transform..transformFile)
+  * [jsx-transform~browserify(options)](#module_jsx-transform..browserify)
 
 <a name="module_jsx-transform..transform"></a>
 ##jsx-transform~transform(str, [options])
@@ -153,6 +154,9 @@ known tags, and pass them as an object to docblock ident. If true,
   - \[unknownTagsAsString\] `Boolean` - Pass unknown tags as string
 instead of object when `options.docblockUnknownTags` is true.  
   - jsx `String` - Constructor name (default: set by docblock).  
+  - passArray `String` - if false follows default react-tools/babel jsx behavour
+`DOM('h1', null, "hello", firstName + " " + lastName)` instead of
+`DOM('h1', null, ["Hello ", firstName + " " + lastName])`.  
 
 **Scope**: inner function of [jsx-transform](#module_jsx-transform)  
 **Returns**: `String`  
@@ -167,6 +171,28 @@ See [module:jsx-transform.transform](module:jsx-transform.transform) for usage.
 
 **Scope**: inner function of [jsx-transform](#module_jsx-transform)  
 **Returns**: `String`  
+<a name="module_jsx-transform..browserify"></a>
+##jsx-transform~browserify(options)
+Return a browserify transform.
+
+See @link module:jsx-transform.transform for options.
+
+**Params**
+
+- options `Object`  
+
+**Scope**: inner function of [jsx-transform](#module_jsx-transform)  
+**Returns**: `Stream` - browserify transform  
+**Example**  
+```javascript
+var browserify = require('browserify');
+var jsx = require('jsx-transform').browserify;
+
+browserify()
+  .transform(jsx(options))
+  .bundle()
+```
+
 
 
 ## BSD Licensed
