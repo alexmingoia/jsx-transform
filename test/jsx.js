@@ -99,17 +99,6 @@ describe('jsx.fromString()', function() {
     });
   });
 
-  describe('options.renameAttrs', function () {
-    it('renames attributes when desugaring JSX', function () {
-      var result = jsx.fromString(fixtureJSX, {
-        renameAttrs: {'class': 'className'}
-      });
-      expect(result).to.be.a('string');
-      expect(result).to.contain("className:");
-      expect(result).to.not.contain("class:");
-    });
-  });
-
   describe('options.passArray', function() {
     it('dont pass array for children', function() {
       var arrayArgsJS = fs.readFileSync(
