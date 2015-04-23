@@ -116,12 +116,12 @@ Profile(null, [state.isLoggedIn ? Settings(null) : CreateAccount(null)]);
 **Members**
 
 * [jsx-transform](#module_jsx-transform)
-  * [jsx-transform~transform(str, [options])](#module_jsx-transform..transform)
-  * [jsx-transform~transformFile(path, options)](#module_jsx-transform..transformFile)
-  * [jsx-transform~browserify(options)](#module_jsx-transform..browserify)
+  * [jsx-transform~fromString(str, [options])](#module_jsx-transform..fromString)
+  * [jsx-transform~fromFile(path, [options])](#module_jsx-transform..fromFile)
+  * [jsx-transform~browserifyTransform([options])](#module_jsx-transform..browserifyTransform)
 
-<a name="module_jsx-transform..transform"></a>
-##jsx-transform~transform(str, [options])
+<a name="module_jsx-transform..fromString"></a>
+##jsx-transform~fromString(str, [options])
 Desugar JSX and return transformed string.
 
 Known tags are passed as arguments to JSX ident (assume
@@ -160,36 +160,36 @@ instead of object when `options.docblockUnknownTags` is true.
 
 **Scope**: inner function of [jsx-transform](#module_jsx-transform)  
 **Returns**: `String`  
-<a name="module_jsx-transform..transformFile"></a>
-##jsx-transform~transformFile(path, options)
-See [module:jsx-transform.transform](module:jsx-transform.transform) for usage.
+<a name="module_jsx-transform..fromFile"></a>
+##jsx-transform~fromFile(path, [options])
+See [module:jsx-transform.fromString](module:jsx-transform.fromString) for usage.
 
 **Params**
 
 - path `String`  
-- options `Object`  
+- \[options\] `Object`  
 
 **Scope**: inner function of [jsx-transform](#module_jsx-transform)  
 **Returns**: `String`  
-<a name="module_jsx-transform..browserify"></a>
-##jsx-transform~browserify(options)
+<a name="module_jsx-transform..browserifyTransform"></a>
+##jsx-transform~browserifyTransform([options])
 Return a browserify transform.
 
-See @link module:jsx-transform.transform for options.
+See @link module:jsx-transform.fromString for options.
 
 **Params**
 
-- options `Object`  
+- \[options\] `Object`  
 
 **Scope**: inner function of [jsx-transform](#module_jsx-transform)  
-**Returns**: `Stream` - browserify transform  
+**Returns**: `function` - browserify transform  
 **Example**  
 ```javascript
 var browserify = require('browserify');
-var jsx = require('jsx-transform').browserify;
+var jsxify = require('jsx-transform').browserify;
 
 browserify()
-  .transform(jsx(options))
+  .transform(jsxify(options))
   .bundle()
 ```
 

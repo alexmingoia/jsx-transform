@@ -3,7 +3,7 @@ var fs = require('fs');
 var jsx = process.env.JSCOV ? require('../lib-cov/jsx') : require('../lib/jsx');
 var path = require('path');
 
-describe('jsx.transform()', function() {
+describe('jsx.fromString()', function() {
   var fixtureJSX = fs.readFileSync(path.join(__dirname, 'fixture.jsx'), 'utf8');
   var fixtureJS = fs.readFileSync(path.join(__dirname, 'fixture.js'), 'utf8');
 
@@ -27,32 +27,32 @@ describe('jsx.transform()', function() {
   );
 
   it('desugars JSX', function() {
-    var result = jsx.transform(fixtureJSX);
+    var result = jsx.fromString(fixtureJSX);
     expect(result).to.be.a('string');
     expect(result).to.equal(fixtureJS);
   });
 
   it('desugars JSX with ES6 module exports', function () {
-    var result = jsx.transform(es6FixtureJSX);
+    var result = jsx.fromString(es6FixtureJSX);
     expect(result).to.be.a('string');
     expect(result).to.contain("DOM('h1");
   });
 
-  it('transforms self-closing tags', function () {
-    var result = jsx.transform(selfClosingFixtureJSX);
+  it('fromStrings self-closing tags', function () {
+    var result = jsx.fromString(selfClosingFixtureJSX);
     expect(result).to.be.a('string');
     expect(result).to.contain("DOM('link");
   });
 
   it('renders JS expressions inside JSX tag', function () {
-    var result = jsx.transform(fixtureJSX);
+    var result = jsx.fromString(fixtureJSX);
     expect(result).to.be.a('string');
     expect(result).to.contain("x = 2");
   });
 
   describe('options.ignoreDocblock', function() {
     it('ignores files without jsx docblock', function() {
-      var result = jsx.transform(fixtureJSX.replace('/** @jsx DOM */', ''));
+      var result = jsx.fromString(fixtureJSX.replace('/** @jsx DOM */', ''));
       expect(result).to.be.a('string');
       expect(result).to.contain('<h1>');
     });
@@ -60,7 +60,7 @@ describe('jsx.transform()', function() {
 
   describe('options.jsx', function() {
     it('overrides docblock constructor', function() {
-      var result = jsx.transform(fixtureJSX, {
+      var result = jsx.fromString(fixtureJSX, {
         jsx: "virtualdom.h"
       });
       expect(result).to.be.a('string');
@@ -70,7 +70,7 @@ describe('jsx.transform()', function() {
 
   describe('options.tagMethods', function() {
     it('uses tag method instead of argument', function() {
-      var result = jsx.transform(fixtureJSX, {
+      var result = jsx.fromString(fixtureJSX, {
         tagMethods: true
       });
       expect(result).to.be.a('string');
@@ -80,7 +80,7 @@ describe('jsx.transform()', function() {
 
   describe('options.docblockUnknownTags', function() {
     it('passes unknown tags to docblock ident', function() {
-      var result = jsx.transform(fixtureJSX, {
+      var result = jsx.fromString(fixtureJSX, {
         docblockUnknownTags: true
       });
       expect(result).to.be.a('string');
@@ -90,7 +90,7 @@ describe('jsx.transform()', function() {
 
   describe('options.unknownTagsAsString', function() {
     it('passes unknown tags to docblock ident as string', function () {
-      var result = jsx.transform(fixtureJSX, {
+      var result = jsx.fromString(fixtureJSX, {
         docblockUnknownTags: true,
         unknownTagsAsString: true
       });
@@ -101,7 +101,7 @@ describe('jsx.transform()', function() {
 
   describe('options.renameAttrs', function () {
     it('renames attributes when desugaring JSX', function () {
-      var result = jsx.transform(fixtureJSX, {
+      var result = jsx.fromString(fixtureJSX, {
         renameAttrs: {'class': 'className'}
       });
       expect(result).to.be.a('string');
@@ -116,7 +116,7 @@ describe('jsx.transform()', function() {
         path.join(__dirname, 'fixture_arrayArgs.js'),
         'utf8'
       );
-      var result = jsx.transform(fixtureJSX, {
+      var result = jsx.fromString(fixtureJSX, {
         passArray: false
       });
       expect(result).to.be.a('string');
@@ -125,7 +125,7 @@ describe('jsx.transform()', function() {
   })
 
   it('supports spread attributes', function () {
-      var result = jsx.transform(fixtureJSXSpreadAttrs);
+      var result = jsx.fromString(fixtureJSXSpreadAttrs);
       expect(result).to.be.a('string');
       expect(result).to.equal(fixtureJSSpreadAttrs);
   });
