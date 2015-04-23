@@ -50,14 +50,6 @@ describe('jsx.fromString()', function() {
     expect(result).to.contain("x = 2");
   });
 
-  describe('options.ignoreDocblock', function() {
-    it('ignores files without jsx docblock', function() {
-      var result = jsx.fromString(fixtureJSX.replace('/** @jsx DOM */', ''));
-      expect(result).to.be.a('string');
-      expect(result).to.contain('<h1>');
-    });
-  });
-
   describe('options.jsx', function() {
     it('overrides docblock constructor', function() {
       var result = jsx.fromString(fixtureJSX, {

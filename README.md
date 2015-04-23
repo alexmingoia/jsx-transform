@@ -142,8 +142,6 @@ docblock ident:
 
 - str `String`  
 - \[options\] `Object`  
-  - \[ignoreDocblock\] `Boolean` - Parse files without docblock. If
-true `options.jsx` must also be set.  
   - \[tagMethods\] `Boolean` - use tag name as method of jsx ident
 instead of argument. If true `DOM.h1()` instead of `DOM('h1')`.  
   - \[docblockUnknownTags\] `Boolean` - Handle unknown tags like
