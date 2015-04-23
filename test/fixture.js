@@ -1,5 +1,3 @@
-/** @jsx DOM */
-
 module.exports = function () {
   var x = 1;
   var profile = Component(null, [x = 2])

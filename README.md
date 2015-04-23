@@ -3,7 +3,8 @@
 > JSX transpiler. Desugar JSX into JavaScript.
 
 This module aims to be a standard and configurable implementation of JSX
-decoupled from [React](https://github.com/facebook/react).
+decoupled from [React](https://github.com/facebook/react) for use with
+[Mercury](https://github.com/Raynos/mercury) or other modules.
 
 For linting files containing JSX see
 [JSXHint](https://github.com/STRML/JSXHint).
@@ -16,101 +17,19 @@ npm install jsx-transform
 
 ## Example
 
-### React
-
-```jsx
-/** @jsx react.createElement */
-
-var profile = <div>
-  <img src="avatar.png" class="profile" />
-  <h3>{[user.firstName, user.lastName].join(' ')}</h3>
-</div>;
-```
-
-Transformed into JS:
-
 ```javascript
-var profile = react.createElement('div', null, [
-  h('img', { src: "avatar.png", class: "profile" }),
-  h('h3', null, [[user.firstName, user.lastName].join(' ')])
-]);
-```
+var jsx = require('jsx-transform');
 
-### virtual-dom
-
-```jsx
-/** @jsx h */
-var h = require('virtual-dom/h');
-
-var profile = <div>
-  <img src="avatar.png" class="profile" />
-  <h3>{[user.firstName, user.lastName].join(' ')}</h3>
-</div>;
-```
-
-```javascript
-var h = require('virtual-dom/h');
-
-var profile = h('div', null, [
-  h('img', { src: "avatar.png", class: "profile" }),
-  h('h3', null, [[user.firstName, user.lastName].join(' ')])
-]);
+jsx.fromString('<h1>Hello World</h1>', {
+  factory: 'mercury.h'
+});
+// => 'mercury.h("h1", null, ["Hello World"])'
 ```
 
 ## JSX
 
-JSX is a JavaScript XML syntax.
-
-### The Transform
-
-Known tag names are passed as arguments to the ident specified by the `@jsx`
-docblock:
-
-`<div class="blue"></div>` => `virtualdom.h('div', { class: 'blue' })`
-
-Unknown tags are assumed to be function names in scope:
-
-`<FrontPage class="blue"></FrontPage>` => `FrontPage({ class: 'blue' })`
-
-### docblock
-
-Only files with the `/** @jsx DOM */` docblock will be parsed unless
-`options.ignoreDocblock` is set. The constructor name is taken from the `@jsx`
-definition.
-
-```javascript
-/** @jsx React.createElement */
-<div>Hello World</div>
-```
-
-is desugared to
-
-```javascript
-React.createElement("div", null, ["Hello World"]);
-```
-
-### Expressions
-
-Use JavaScript expressions as attribute values by wrapping the expression in a
-pair of curly braces ({}) instead of quotes (""):
-
-```jsx
-<Profile class={state.isLoggedIn ? 'loggedIn' : 'loggedOut'}></Profile>
-```
-
-```javascript
-Profile({ class: state.isLoggedIn ? 'loggedIn' : 'loggedOut' });
-```
-
-Expressions can also express children:
-
-```jsx
-<Profile>{ state.isLoggedIn ? <Settings /> : <CreateAccount /> }</Profile>
-```
-
-```javascript
-Profile(null, [state.isLoggedIn ? Settings(null) : CreateAccount(null)]);
-```
+JSX is a JavaScript syntax for composing virtual DOM elements.
+See React's [documentation][0] for an explanation.
 
 ## API
 **Members**
@@ -124,33 +43,18 @@ Profile(null, [state.isLoggedIn ? Settings(null) : CreateAccount(null)]);
 ##jsx-transform~fromString(str, [options])
 Desugar JSX and return transformed string.
 
-Known tags are passed as arguments to JSX ident (assume
-`@jsx Element`):
-
-  `<div class="blue"></div>` => `Element('div', { class: 'blue' })`
-
-Unknown tags are assumed to be function names in scope:
-
-  `<FrontPage class="blue"></FrontPage>` => `FrontPage({ class: 'blue' })`
-
-If `options.docblockUnknownTags` is `true` unknown tags are passed to the
-docblock ident:
-
-  `<FrontPage></FrontPage>` => `Element(FrontPage, ...)`
-
 **Params**
 
 - str `String`  
 - \[options\] `Object`  
-  - \[docblockUnknownTags\] `Boolean` - Handle unknown tags like
-known tags, and pass them as an object to docblock ident. If true,
-`DOM(Component)` instead of `Component()` (default: false).  
+  - factory `String` - Factory function name for element creation.  
+  - \[passUnknownTagsToFactory\] `Boolean` - Handle unknown tags
+like known tags, and pass them as an object to `options.factory`. If
+true, `createElement(Component)` instead of `Component()` (default: false).  
   - \[unknownTagsAsString\] `Boolean` - Pass unknown tags as string
-instead of object when `options.docblockUnknownTags` is true.  
-  - jsx `String` - Constructor name (default: set by docblock).  
-  - passArray `String` - if false follows default react-tools/babel jsx behavour
-`DOM('h1', null, "hello", firstName + " " + lastName)` instead of
-`DOM('h1', null, ["Hello ", firstName + " " + lastName])`.  
+to `options.factory` (default: false).  
+  - \[arrayChildren\] `Boolean` - Pass children as array instead of
+arguments (default: true).  
 
 **Scope**: inner function of [jsx-transform](#module_jsx-transform)  
 **Returns**: `String`  
@@ -169,7 +73,7 @@ See [module:jsx-transform.fromString](module:jsx-transform.fromString) for usage
 ##jsx-transform~browserifyTransform([options])
 Return a browserify transform.
 
-See @link module:jsx-transform.fromString for options.
+See [module:jsx-transform.fromString](module:jsx-transform.fromString) for options.
 
 **Params**
 
@@ -191,5 +95,4 @@ browserify()
 
 ## BSD Licensed
 
-[0]: https://github.com/facebook/react/
-[1]: https://github.com/STRML/JSXHint/
+[0]: https://facebook.github.io/react/docs/jsx-in-depth.html

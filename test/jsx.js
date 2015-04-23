@@ -27,43 +27,58 @@ describe('jsx.fromString()', function() {
   );
 
   it('desugars JSX', function() {
-    var result = jsx.fromString(fixtureJSX);
+    var result = jsx.fromString(fixtureJSX, {
+      factory: 'DOM'
+    });
     expect(result).to.be.a('string');
     expect(result).to.equal(fixtureJS);
   });
 
   it('desugars JSX with ES6 module exports', function () {
-    var result = jsx.fromString(es6FixtureJSX);
+    var result = jsx.fromString(es6FixtureJSX, {
+      factory: 'DOM'
+    });
     expect(result).to.be.a('string');
     expect(result).to.contain("DOM('h1");
   });
 
   it('fromStrings self-closing tags', function () {
-    var result = jsx.fromString(selfClosingFixtureJSX);
+    var result = jsx.fromString(selfClosingFixtureJSX, {
+      factory: 'DOM'
+    });
     expect(result).to.be.a('string');
     expect(result).to.contain("DOM('link");
   });
 
   it('renders JS expressions inside JSX tag', function () {
-    var result = jsx.fromString(fixtureJSX);
+    var result = jsx.fromString(fixtureJSX, {
+      factory: 'DOM'
+    });
     expect(result).to.be.a('string');
     expect(result).to.contain("x = 2");
   });
 
-  describe('options.jsx', function() {
-    it('overrides docblock constructor', function() {
+  describe('options.factory', function() {
+    it('throws error if not set', function () {
+      expect(function () {
+        jsx.fromString(fixtureJSX);
+      }).to.throwError(/Missing options.factory function/);
+    });
+
+    it('set factory', function() {
       var result = jsx.fromString(fixtureJSX, {
-        jsx: "virtualdom.h"
+        factory: "mercury.h"
       });
       expect(result).to.be.a('string');
-      expect(result).to.contain("virtualdom.h('h1");
+      expect(result).to.contain("mercury.h('h1");
     });
   });
 
-  describe('options.docblockUnknownTags', function() {
-    it('passes unknown tags to docblock ident', function() {
+  describe('options.passUnknownTagsToFactory', function() {
+    it('passes unknown tags to options.factory', function() {
       var result = jsx.fromString(fixtureJSX, {
-        docblockUnknownTags: true
+        factory: 'DOM',
+        passUnknownTagsToFactory: true
       });
       expect(result).to.be.a('string');
       expect(result).to.contain("DOM(Component");
@@ -73,7 +88,8 @@ describe('jsx.fromString()', function() {
   describe('options.unknownTagsAsString', function() {
     it('passes unknown tags to docblock ident as string', function () {
       var result = jsx.fromString(fixtureJSX, {
-        docblockUnknownTags: true,
+        factory: 'DOM',
+        passUnknownTagsToFactory: true,
         unknownTagsAsString: true
       });
       expect(result).to.be.a('string');
@@ -81,14 +97,15 @@ describe('jsx.fromString()', function() {
     });
   });
 
-  describe('options.passArray', function() {
+  describe('options.arrayChildren', function() {
     it('dont pass array for children', function() {
       var arrayArgsJS = fs.readFileSync(
         path.join(__dirname, 'fixture_array_args.js'),
         'utf8'
       );
       var result = jsx.fromString(fixtureJSX, {
-        passArray: false
+        factory: 'DOM',
+        arrayChildren: false
       });
       expect(result).to.be.a('string');
       expect(result).to.equal(arrayArgsJS);
@@ -96,7 +113,10 @@ describe('jsx.fromString()', function() {
   })
 
   it('supports spread attributes', function () {
-      var result = jsx.fromString(fixtureJSXSpreadAttrs);
+      var result = jsx.fromString(fixtureJSXSpreadAttrs, {
+        factory: 'DOM',
+        arrayChildren: false
+      });
       expect(result).to.be.a('string');
       expect(result).to.equal(fixtureJSSpreadAttrs);
   });

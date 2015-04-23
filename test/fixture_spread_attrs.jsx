@@ -1,5 +1,3 @@
-/** @jsx DOM */
-
 module.exports = function () {
   <Component {...firstSpread} {...secondSpread}>
     <div some="prop" another="prop">Test</div>

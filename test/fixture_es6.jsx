@@ -1,5 +1,3 @@
-/** @jsx DOM */
-
 export default View;
 
 function View() {
