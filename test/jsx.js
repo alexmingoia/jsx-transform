@@ -6,12 +6,23 @@ var path = require('path');
 describe('jsx.transform()', function() {
   var fixtureJSX = fs.readFileSync(path.join(__dirname, 'fixture.jsx'), 'utf8');
   var fixtureJS = fs.readFileSync(path.join(__dirname, 'fixture.js'), 'utf8');
+
   var selfClosingFixtureJSX = fs.readFileSync(
     path.join(__dirname, 'fixture_selfclosing.jsx'),
     'utf8'
   );
   var es6FixtureJSX = fs.readFileSync(
     path.join(__dirname, 'fixture_es6.jsx'),
+    'utf8'
+  );
+
+  var fixtureJSXSpreadAttrs = fs.readFileSync(
+    path.join(__dirname, 'fixture_spread_attrs.jsx'),
+    'utf8'
+  );
+
+  var fixtureJSSpreadAttrs = fs.readFileSync(
+    path.join(__dirname, 'fixture_spread_attrs.js'),
     'utf8'
   );
 
@@ -112,4 +123,10 @@ describe('jsx.transform()', function() {
       expect(result).to.equal(arrayArgsJS);
     })
   })
+
+  it('supports spread attributes', function () {
+      var result = jsx.transform(fixtureJSXSpreadAttrs);
+      expect(result).to.be.a('string');
+      expect(result).to.equal(fixtureJSSpreadAttrs);
+  });
 });
