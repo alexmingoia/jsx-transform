@@ -102,7 +102,7 @@ describe('jsx.fromString()', function() {
   describe('options.passArray', function() {
     it('dont pass array for children', function() {
       var arrayArgsJS = fs.readFileSync(
-        path.join(__dirname, 'fixture_arrayArgs.js'),
+        path.join(__dirname, 'fixture_array_args.js'),
         'utf8'
       );
       var result = jsx.fromString(fixtureJSX, {
