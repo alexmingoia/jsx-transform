@@ -48,6 +48,8 @@ Desugar JSX and return transformed string.
 - str `String`  
 - \[options\] `Object`  
   - factory `String` - Factory function name for element creation.  
+  - \[spreadFn\] `String` - Name of function for use with spread
+attributes (default: Object.assign).  
   - \[passUnknownTagsToFactory\] `Boolean` - Handle unknown tags
 like known tags, and pass them as an object to `options.factory`. If
 true, `createElement(Component)` instead of `Component()` (default: false).  
