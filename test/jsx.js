@@ -112,6 +112,16 @@ describe('jsx.fromString()', function() {
     })
   })
 
+  it('supports custom component patterns', function () {
+      var result = jsx.fromString('<Component foo="bar" />', {
+        factory: 'DOM',
+        unknownTagPattern: '{tag}.render',
+        arrayChildren: false
+      });
+      expect(result).to.be.a('string');
+      expect(result).to.equal('Component.render({foo: "bar"})');
+  });
+
   it('supports spread attributes', function () {
       var result = jsx.fromString(fixtureJSXSpreadAttrs, {
         factory: 'DOM',

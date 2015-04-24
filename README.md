@@ -50,6 +50,9 @@ Desugar JSX and return transformed string.
   - factory `String` - Factory function name for element creation.  
   - \[spreadFn\] `String` - Name of function for use with spread
 attributes (default: Object.assign).  
+  - \[unknownTagPattern\] `String` - uses given pattern for unknown
+tags where `{tag}` is replaced by the tag name. Useful for rending mercury
+components as `Component.render()` instead of `Component()`.  
   - \[passUnknownTagsToFactory\] `Boolean` - Handle unknown tags
 like known tags, and pass them as an object to `options.factory`. If
 true, `createElement(Component)` instead of `Component()` (default: false).  
