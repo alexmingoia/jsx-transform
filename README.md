@@ -89,7 +89,7 @@ See [module:jsx-transform.fromString](module:jsx-transform.fromString) for optio
 **Example**  
 ```javascript
 var browserify = require('browserify');
-var jsxify = require('jsx-transform').browserify;
+var jsxify = require('jsx-transform').browserifyTransform;
 
 browserify()
   .transform(jsxify(options))
