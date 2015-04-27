@@ -92,7 +92,7 @@ var browserify = require('browserify');
 var jsxify = require('jsx-transform').browserifyTransform;
 
 browserify()
-  .transform(jsxify(options))
+  .transform(jsxify, options)
   .bundle()
 ```
 
