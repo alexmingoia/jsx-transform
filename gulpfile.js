@@ -8,8 +8,9 @@
 var gulp = require('gulp');
 var env = process.env.NODE_ENV;
 var fs = require('fs');
+var rename = require('gulp-rename');
 var instrument = require('gulp-instrument');
-var jsdoc2md = require('jsdoc-to-markdown');
+var jsdoc2md = require('gulp-jsdoc-to-markdown');
 var jshint = require('gulp-jshint');
 var mocha = require('gulp-mocha');
 var stylish = require('jshint-stylish');
@@ -33,12 +34,12 @@ gulp.task('coverage', ['instrument'], function() {
 });
 
 gulp.task('docs', function(done) {
-  jsdoc2md.render('./lib/*.js', {
-    template: './lib/README.md.hbs'
-  })
-  .on('error', done)
-  .on('end', done)
-  .pipe(fs.createWriteStream('README.md'))
+  return gulp.src('lib/jsx.js')
+  .pipe(jsdoc2md({
+    template: fs.readFileSync('lib/README.md.hbs', 'utf8')
+  }))
+  .pipe(rename('README.md'))
+  .pipe(gulp.dest('./'))
 });
 
 gulp.task('test', function () {

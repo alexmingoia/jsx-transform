@@ -36,9 +36,10 @@
     "expect.js": "^0.3.1",
     "gulp": "^3.8.10",
     "gulp-instrument": "^0.1.0",
+    "gulp-jsdoc-to-markdown": "^1.0.2",
     "gulp-jshint": "^1.9.0",
     "gulp-mocha": "^2.0.0",
-    "jsdoc-to-markdown": "^0.5.9",
+    "gulp-rename": "^1.2.2",
     "jshint-stylish": "^1.0.1",
     "vinyl-source-stream": "^1.1.0"
   }
