@@ -37,7 +37,7 @@ See React's [documentation][0] for an explanation.
 * [jsx-transform](#module_jsx-transform)
   * [jsx-transform~fromString(str, [options])](#module_jsx-transform..fromString)
   * [jsx-transform~fromFile(path, [options])](#module_jsx-transform..fromFile)
-  * [jsx-transform~browserifyTransform([options])](#module_jsx-transform..browserifyTransform)
+  * [jsx-transform~browserifyTransform([filename], [options])](#module_jsx-transform..browserifyTransform)
 
 <a name="module_jsx-transform..fromString"></a>
 ##jsx-transform~fromString(str, [options])
@@ -75,13 +75,14 @@ See [module:jsx-transform.fromString](module:jsx-transform.fromString) for usage
 **Scope**: inner function of [jsx-transform](#module_jsx-transform)  
 **Returns**: `String`  
 <a name="module_jsx-transform..browserifyTransform"></a>
-##jsx-transform~browserifyTransform([options])
-Return a browserify transform.
+##jsx-transform~browserifyTransform([filename], [options])
+Make a browserify transform.
 
 See [module:jsx-transform.fromString](module:jsx-transform.fromString) for options.
 
 **Params**
 
+- \[filename\] `String`  
 - \[options\] `Object`  
 
 **Scope**: inner function of [jsx-transform](#module_jsx-transform)  
@@ -94,6 +95,17 @@ var jsxify = require('jsx-transform').browserifyTransform;
 browserify()
   .transform(jsxify, options)
   .bundle()
+```
+
+Use `.configure(options)` to return a configured transform:
+
+```javascript
+var browserify = require('browserify');
+var jsxify = require('jsx-transform').browserifyTransform;
+
+browserify({
+  transforms: [jsxify.configure(options)]
+}).bundle()
 ```
 
 
