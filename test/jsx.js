@@ -1,3 +1,4 @@
+var Browserify = require('browserify');
 var expect = require('expect.js');
 var fs = require('fs');
 var jsx = process.env.JSCOV ? require('../lib-cov/jsx') : require('../lib/jsx');
@@ -129,5 +130,37 @@ describe('jsx.fromString()', function() {
       });
       expect(result).to.be.a('string');
       expect(result).to.equal(fixtureJSSpreadAttrs);
+  });
+});
+
+describe('jsx.browserifyTransform()', function () {
+  it('transforms JSX', function (done) {
+    var bundler = Browserify({
+      entries: [path.join(__dirname, 'fixture.jsx')]
+    });
+
+    bundler.transform(jsx.browserifyTransform, {
+      factory: 'DOM'
+    });
+
+    bundler.bundle(function (err, buf) {
+      done(err);
+    });
+  });
+
+  it('ignores .json files', function (done) {
+    var bundler = Browserify({
+      entries: [path.join(__dirname, 'fixture.jsx')]
+    });
+
+    bundler.transform(jsx.browserifyTransform, {
+      factory: 'DOM',
+    });
+
+    bundler.add(path.join(__dirname, '..', 'package.json'));
+
+    bundler.bundle(function (err, buf) {
+      done(err);
+    });
   });
 });

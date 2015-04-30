@@ -80,10 +80,11 @@ Make a browserify transform.
 **Kind**: inner method of <code>[jsx-transform](#module_jsx-transform)</code>  
 **Returns**: <code>function</code> - browserify transform  
 
-| Param | Type |
-| --- | --- |
-| [filename] | <code>String</code> | 
-| [options] | <code>Object</code> | 
+| Param | Type | Description |
+| --- | --- | --- |
+| [filename] | <code>String</code> |  |
+| [options] | <code>Object</code> |  |
+| [options.extensions] | <code>String</code> | Array of file extensions to run browserify transform on (default: `['.js', '.jsx', '.es', '.es6']`). |
 
 **Example**  
 ```javascript
