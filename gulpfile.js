@@ -46,7 +46,7 @@ gulp.task('test', function () {
   return gulp.src('test/*.js')
     .pipe(mocha({
       timeout: 6000,
-      ignoreLeaks: false,
+      ignoreLeaks: ['replacements'],
       ui: 'bdd',
       reporter: 'spec'
     }));
