@@ -27,6 +27,16 @@ describe('jsx.fromString()', function() {
     'utf8'
   );
 
+  var fixtureJSSpreadAttrsB = fs.readFileSync(
+    path.join(__dirname, 'fixture_spread_attrs_b.js'),
+    'utf8'
+  );
+
+  var fixtureJSSpreadAttrsC = fs.readFileSync(
+    path.join(__dirname, 'fixture_spread_attrs_c.js'),
+    'utf8'
+  );
+
   it('desugars JSX', function() {
     var result = jsx.fromString(fixtureJSX, {
       factory: 'DOM'
@@ -130,6 +140,23 @@ describe('jsx.fromString()', function() {
       });
       expect(result).to.be.a('string');
       expect(result).to.equal(fixtureJSSpreadAttrs);
+
+      result = jsx.fromString(fixtureJSXSpreadAttrs, {
+        factory: 'DOM',
+        passUnknownTagsToFactory: true,
+        arrayChildren: false
+      });
+      expect(result).to.be.a('string');
+      expect(result).to.equal(fixtureJSSpreadAttrsB);
+
+      result = jsx.fromString(fixtureJSXSpreadAttrs, {
+        factory: 'DOM',
+        passUnknownTagsToFactory: true,
+        unknownTagsAsString: true,
+        arrayChildren: false
+      });
+      expect(result).to.be.a('string');
+      expect(result).to.equal(fixtureJSSpreadAttrsC);
   });
 });
 
