@@ -1,6 +1,6 @@
 {
   "name": "jsx-transform",
-  "version": "2.1.0",
+  "version": "2.1.1",
   "description": "JSX transpiler. Desugar JSX into JavaScript. A standard and configurable implementation of JSX decoupled from React.",
   "files": [
     "lib"
