@@ -6,6 +6,9 @@ This module aims to be a standard and configurable implementation of JSX
 decoupled from [React](https://github.com/facebook/react) for use with
 [Mercury](https://github.com/Raynos/mercury) or other modules.
 
+JSX is a JavaScript syntax for composing virtual DOM elements.
+See React's [documentation][0] for an explanation.
+
 For linting files containing JSX see
 [JSXHint](https://github.com/STRML/JSXHint).
 
@@ -15,28 +18,15 @@ For linting files containing JSX see
 npm install jsx-transform
 ```
 
-## Example
-
-```javascript
-var jsx = require('jsx-transform');
-
-jsx.fromString('<h1>Hello World</h1>', {
-  factory: 'mercury.h'
-});
-// => 'mercury.h("h1", null, ["Hello World"])'
-```
-
-## JSX
-
-JSX is a JavaScript syntax for composing virtual DOM elements.
-See React's [documentation][0] for an explanation.
-
 ## API
 <a name="module_jsx-transform"></a>
 ## jsx-transform
 This module aims to be a standard and configurable implementation of JSX
 decoupled from [React](https://github.com/facebook/react) for use with
 [Mercury](https://github.com/Raynos/mercury) or other modules.
+
+JSX is a JavaScript syntax for composing virtual DOM elements.
+See React's [documentation][0] for an explanation.
 
 For linting files containing JSX see
 [JSXHint](https://github.com/STRML/JSXHint).
@@ -64,6 +54,15 @@ Desugar JSX and return transformed string.
 | [options.unknownTagsAsString] | <code>Boolean</code> | Pass unknown tags as string to `options.factory` (default: false). |
 | [options.arrayChildren] | <code>Boolean</code> | Pass children as array instead of arguments (default: true). |
 
+**Example**  
+```javascript
+var jsx = require('jsx-transform');
+
+jsx.fromString('<h1>Hello World</h1>', {
+  factory: 'mercury.h'
+});
+// => 'mercury.h("h1", null, ["Hello World"])'
+```
 <a name="module_jsx-transform..fromFile"></a>
 ### jsx-transform~fromFile(path, [options]) ⇒ <code>String</code>
 **Kind**: inner method of <code>[jsx-transform](#module_jsx-transform)</code>  
@@ -105,6 +104,16 @@ var jsxify = require('jsx-transform').browserifyTransform;
 browserify({
   transforms: [jsxify.configure(options)]
 }).bundle()
+```
+
+Use in `package.json`:
+
+```json
+"browserify": {
+  "transform": [
+    ["jsx-transform/browserify", { "factory": "h" }]
+  ]
+}
 ```
 
 

@@ -8,22 +8,6 @@
 npm install jsx-transform
 ```
 
-## Example
-
-```javascript
-var jsx = require('jsx-transform');
-
-jsx.fromString('<h1>Hello World</h1>', {
-  factory: 'mercury.h'
-});
-// => 'mercury.h("h1", null, ["Hello World"])'
-```
-
-## JSX
-
-JSX is a JavaScript syntax for composing virtual DOM elements.
-See React's [documentation][0] for an explanation.
-
 ## API
 {{#module name="jsx-transform"}}{{>docs}}{{/module}}
 

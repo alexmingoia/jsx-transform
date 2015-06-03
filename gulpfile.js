@@ -36,7 +36,7 @@ gulp.task('coverage', ['instrument'], function() {
 gulp.task('docs', function(done) {
   return gulp.src('lib/jsx.js')
   .pipe(jsdoc2md({
-    template: fs.readFileSync('lib/README.md.hbs', 'utf8')
+    template: fs.readFileSync('lib/README_template.md.hbs', 'utf8')
   }))
   .pipe(rename('README.md'))
   .pipe(gulp.dest('./'))
