@@ -3,7 +3,8 @@
   "version": "2.2.0",
   "description": "JSX transpiler. Desugar JSX into JavaScript. A standard and configurable implementation of JSX decoupled from React.",
   "files": [
-    "lib"
+    "lib",
+    "browserify.js"
   ],
   "main": "lib/jsx.js",
   "scripts": {
