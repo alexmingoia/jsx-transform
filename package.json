@@ -24,12 +24,13 @@
     "hyperscript"
   ],
   "author": "Alex Mingoia <talk@alexmingoia.com>",
-  "license": "BSD",
+  "license": "0BSD",
   "bugs": {
     "url": "https://github.com/alexmingoia/jsx-transform/issues"
   },
   "homepage": "https://github.com/alexmingoia/jsx-transform",
   "dependencies": {
+    "esprima-fb": "^15001.1001.0-dev-harmony-fb",
     "jstransform": "^11.0.0",
     "through2": "^0.6.5"
   },
