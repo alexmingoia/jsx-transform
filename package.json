@@ -8,7 +8,7 @@
   ],
   "main": "lib/jsx.js",
   "scripts": {
-    "test": "./node_modules/gulp/bin/gulp.js test"
+    "test": "npx gulp test"
   },
   "repository": {
     "type": "git",
@@ -35,16 +35,16 @@
     "through2": "^2.0.0"
   },
   "devDependencies": {
-    "browserify": "^13.0.0",
+    "browserify": "^16.1.1",
     "expect.js": "^0.3.1",
-    "gulp": "^3.8.10",
+    "gulp": "^3.9.1",
     "gulp-instrument": "^0.1.0",
-    "gulp-jsdoc-to-markdown": "^1.0.2",
-    "gulp-jshint": "^2.0.0",
-    "gulp-mocha": "^2.0.0",
+    "gulp-jsdoc-to-markdown": "^1.2.2",
+    "gulp-jshint": "^2.1.0",
+    "gulp-mocha": "^5.0.0",
     "gulp-rename": "^1.2.2",
-    "jshint": "^2.9.1",
-    "jshint-stylish": "^2.1.0",
-    "vinyl-source-stream": "^1.1.0"
+    "jshint": "^2.9.5",
+    "jshint-stylish": "^2.2.1",
+    "vinyl-source-stream": "^2.0.0"
   }
 }
