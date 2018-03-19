@@ -18,7 +18,7 @@ var spawn = require('child_process').spawn;
 var source = require('vinyl-source-stream');
 
 gulp.task('instrument', function() {
-  return gulp.src('lib/**.js')
+  return gulp.src('lib\/**.js')
     .pipe(instrument())
     .pipe(gulp.dest('lib-cov'));
 });
@@ -43,7 +43,7 @@ gulp.task('docs', function(done) {
 });
 
 gulp.task('test', function () {
-  return gulp.src('test/*.js')
+  return gulp.src('test\/*.js')
     .pipe(mocha({
       timeout: 6000,
       ignoreLeaks: ['replacements'],
