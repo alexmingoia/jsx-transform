@@ -8,7 +8,7 @@
   ],
   "main": "lib/jsx.js",
   "scripts": {
-    "test": "mocha test"
+    "test": "gulp test"
   },
   "repository": {
     "type": "git",
@@ -31,7 +31,7 @@
   "homepage": "https://github.com/alexmingoia/jsx-transform",
   "dependencies": {
     "esprima-fb": "^15001.1001.0-dev-harmony-fb",
-    "jstransform": "^11.0.0",
+    "jstransform": "^11.0.3",
     "through2": "^2.0.0"
   },
   "devDependencies": {
