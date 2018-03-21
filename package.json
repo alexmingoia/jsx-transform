@@ -8,7 +8,7 @@
   ],
   "main": "lib/jsx.js",
   "scripts": {
-    "test": "gulp test"
+    "test": "mocha test"
   },
   "repository": {
     "type": "git",
