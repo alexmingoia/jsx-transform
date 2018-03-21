@@ -37,6 +37,16 @@ describe('jsx.fromString()', function() {
     'utf8'
   );
 
+  var fixtureNamespaceJS = fs.readFileSync(
+    path.join(__dirname, 'fixture_namespace.js'),
+    'utf8'
+  );
+
+  var fixtureNamespaceJSX = fs.readFileSync(
+    path.join(__dirname, 'fixture_namespace.jsx'),
+    'utf8'
+  );
+
   it('desugars JSX', function() {
     var result = jsx.fromString(fixtureJSX, {
       factory: 'DOM'
@@ -67,6 +77,14 @@ describe('jsx.fromString()', function() {
     });
     expect(result).to.be.a('string');
     expect(result).to.contain("x = 2");
+  });
+
+  it('handles namespace', function() {
+    var result = jsx.fromString(fixtureNamespaceJSX, {
+      factory: 'h'
+    });
+    expect(result).to.be.a('string');
+    expect(result).to.equal(fixtureNamespaceJS);
   });
 
   describe('options.factory', function() {
